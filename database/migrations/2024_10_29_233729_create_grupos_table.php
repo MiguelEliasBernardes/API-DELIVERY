@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pedidos', function (Blueprint $table) {
-            $table->id('codigo_pedidos');
-            $table->string('status_pedido', 45);
-            $table->date('data_pedido');
-            $table->integer('valor');
-            $table->foreignId('id_cliente')->references('codigo_cliente')->on('cliente');
+        Schema::create('grupos', function (Blueprint $table) {
+            $table->id('id_grupo');
+            $table->string('grupo', 255);
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pedidos');
+        Schema::dropIfExists('grupos');
     }
 };

@@ -5,18 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Produto extends Model
+class Grupos extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'preco',
-        'nome_produto',
-        'id_grupo'
+        'grupo'
     ];
 
-    public function grupo()
+    public function produtos()
     {
-        return $this->belongsTo(Grupos::class);
+        return $this->hasMany(Produto::class, 'id_grupo');
     }
 }

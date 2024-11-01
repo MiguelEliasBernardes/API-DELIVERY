@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('codigo_prod');
             $table->double('preco');
             $table->string('nome_produto', 255);
+            $table->foreignId('id_grupo')->references('id_grupo')->on('grupos');
             $table->timestamps();
         });
     }

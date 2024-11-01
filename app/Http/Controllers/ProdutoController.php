@@ -23,7 +23,8 @@ class ProdutoController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'preco' => 'required|numeric',
-            'nome_produto' => 'required|string|max:255'
+            'nome_produto' => 'required|string|max:255',
+            'id_grupo' => 'required|exists:grupos,id_grupo'
         ]);
 
         if($validator->fails())
@@ -42,6 +43,30 @@ class ProdutoController extends Controller
             "data" => $customer,
             "status" => "sucess"
         ], 201);
+    }
+
+
+    public function procurarPorNome(Request $request)
+    {
+        $dados = $request->input('nome_produto');
+        $customer = Produto::where('nome_produto', 'LIKE',"%{$dados}%")->get();
+
+        if($customer->isEmpty())
+        {
+            return response()->json([
+                "message" => "Nenhum item encontrado",
+                "data" => $customer,
+                "status" => "sucess"
+            ],200);
+        }else{
+            return response()->json([
+                "message" => "Item encontrado",
+                "data" => $customer,
+                "status" => "sucess"
+            ],200);
+        }
+
+        
     }
 
 

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id('codigo_produto_ped');
             $table->integer('quantidade_prod');
             $table->double('total_prod');
-            $table->foreignId('id_pedido')->references('pedidos')->on('codigo_pedido');
-            $table->foreignId('id_produto')->references('produto')->on('codigo_prod');
+            $table->foreignId('id_pedido')->references('codigo_pedido')->on('pedidos');
+            $table->foreignId('id_produto')->references('codigo_prod')->on('produto');
             $table->timestamps();
         });
     }

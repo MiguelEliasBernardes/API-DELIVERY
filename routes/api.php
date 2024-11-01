@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\GruposController;
 use App\Http\Controllers\ProdutoController;
-use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -11,4 +11,8 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get('/produto', [ProdutoController::class, 'listar']);
+Route::get('/produtoNome', [ProdutoController::class, 'procurarPorNome']);
 Route::post('/produto', [ProdutoController::class, 'criar']);
+
+Route::get('/gruposItens', [GruposController::class, 'pesquisaGruposItens']);
+Route::post('/criarGrupo', [GruposController::class, 'criarGrupo']);
